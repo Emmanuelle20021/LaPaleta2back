@@ -4,7 +4,7 @@ app.use(express.json());
 
 import productRouter from './routes/product';
 
-const PORT = 4000;
+const PORT = 4200;
 
 app.get('/ping', ( _req , res ) => {
     console.log('someone pinged here!! ' + new Date().toLocaleDateString());
