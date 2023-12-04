@@ -1,14 +1,10 @@
 import express from 'express';
-import router from './routes'
+import router from './routes/router'
+
 const app = express();
 app.use(express.json());
 
 const PORT = 4200;
-
-app.get('/ping', ( _req , res ) => {
-    console.log('someone pinged here!! ' + new Date().toLocaleDateString());
-    res.send('pong');
-});
 
 app.use('/api', router);
 
