@@ -16,7 +16,7 @@ import {
   
       @Column({
           primaryKey: true,
-          type: DataType.NUMBER,
+          type: DataType.INTEGER,
           autoIncrement: true,
       })
       declare idrol: Number;

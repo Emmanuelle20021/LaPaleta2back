@@ -19,4 +19,6 @@ const sequelize = new Sequelize({
   models: [Role, User, Product, Order, Cooler, Subcategory, Category],
 });
 
+sequelize.sync().then(() => console.log('sync done'));
+
 export default sequelize;

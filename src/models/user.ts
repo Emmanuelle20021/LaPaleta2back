@@ -17,7 +17,7 @@ import Role from "./role";
 class User extends Model {
   @Column({
     primaryKey: true,
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     autoIncrement: true,
     allowNull: false,
   })
@@ -62,7 +62,7 @@ class User extends Model {
 
   @ForeignKey(() => Role)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   declare id_rol: Number;

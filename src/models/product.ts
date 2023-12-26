@@ -19,7 +19,7 @@ class Product extends Model {
 
     @Column({
         primaryKey: true,
-        type: DataType.NUMBER,
+        type: DataType.INTEGER,
         autoIncrement: true,
         allowNull: false,
     })
@@ -52,14 +52,14 @@ class Product extends Model {
 
     @ForeignKey(() => Category)
     @Column({
-        type: DataType.NUMBER,
+        type: DataType.INTEGER,
         allowNull: false,
     })
     declare id_categoria: Number;
 
     @ForeignKey(() => Subcategory)
     @Column({
-        type: DataType.NUMBER,
+        type: DataType.INTEGER,
         allowNull: false,
     })
     declare id_subcategoria: Number;

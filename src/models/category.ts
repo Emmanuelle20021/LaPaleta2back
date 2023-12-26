@@ -16,7 +16,7 @@ class Category extends Model {
 
     @Column({
         primaryKey: true,
-        type: DataType.NUMBER,
+        type: DataType.INTEGER,
         autoIncrement: true,
         allowNull: false,
     })

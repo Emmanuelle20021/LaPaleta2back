@@ -17,7 +17,7 @@ import User from "./user";
 class Order extends Model {
   @Column({
     primaryKey: true,
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     autoIncrement: true,
     allowNull: false,
   })
@@ -32,7 +32,7 @@ class Order extends Model {
 
   @ForeignKey(() => User)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   declare id_cliente: Number;

@@ -17,7 +17,7 @@ import Product from "./product";
 class Cooler extends Model {
   @Column({
     primaryKey: true,
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     autoIncrement: true,
     allowNull: false,
   })
@@ -31,20 +31,20 @@ class Cooler extends Model {
   declare habilitado: Boolean;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   declare id_cliente: Number;
 
   @ForeignKey(() => Product)
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   declare id_producto: Number;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   declare id_pedido: Number;
