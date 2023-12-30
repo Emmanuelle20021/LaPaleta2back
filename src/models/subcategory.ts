@@ -20,7 +20,7 @@ class Subcategory extends Model {
         autoIncrement: true,
         allowNull: false,
     })
-    declare id: Number;
+    declare idsubcategoria: Number;
 
     @Column({
         type: DataType.STRING,

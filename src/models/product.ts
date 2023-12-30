@@ -23,7 +23,7 @@ class Product extends Model {
         autoIncrement: true,
         allowNull: false,
     })
-    declare id: Number;
+    declare idproducto: Number;
 
     @Column({
         type: DataType.STRING,

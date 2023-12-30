@@ -21,7 +21,7 @@ class Cooler extends Model {
     autoIncrement: true,
     allowNull: false,
   })
-  declare id: Number;
+  declare idnevera: Number;
 
   @Column({
     type: DataType.BOOLEAN,

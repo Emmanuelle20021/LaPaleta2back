@@ -1,23 +1,18 @@
 import express from 'express';
-import { } from '../controller/cooler';
+import { addCooler, getCooler, getCoolers, removeCooler, updateCooler } from '../controller/cooler';
 
 const router = express.Router();
 
-router.get('/:id', (_req , res)=> { 
-    res.send('get in cooler');
-});
 
-router.post('/add',(_req , res)=>{
-    res.send('post in cooler');
-});
+router.get('/', getCoolers);
 
-router.post('/update/:id',(_req , res)=>{
-    res.send('update in cooler');
-});
+router.get('/:id', getCooler);
 
-router.delete('/remove/:id',(_req , res)=>{
-    res.send('remove in cooler');
-});
+router.post('/add', addCooler);
+
+router.post('/update/:id', updateCooler);
+
+router.delete('/remove/:id', removeCooler);
 
 
 export default router;

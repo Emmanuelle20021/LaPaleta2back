@@ -21,7 +21,7 @@ class User extends Model {
     autoIncrement: true,
     allowNull: false,
   })
-  declare id: Number;
+  declare idusuario: Number;
 
   @Column({
     type: DataType.STRING,

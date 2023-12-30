@@ -1,23 +1,17 @@
 import express from 'express';
-import { } from '../controller/user';
+import { addUser, getUsers, removeUser, updateUser } from '../controller/user';
 
 const router = express.Router();
 
-router.get('/:id', (_req , res)=> { 
-    res.send('get in user');
-});
+router.get('/', getUsers);
 
-router.post('/add',(_req , res)=>{
-    res.send('post in user');
-});
+router.get('/:id', getUsers);
 
-router.post('/update/:id',(_req , res)=>{
-    res.send('update in user');
-});
+router.post('/add', addUser);
 
-router.delete('/remove/:id',(_req , res)=>{
-    res.send('remove in user');
-});
+router.post('/update/:id', updateUser);
+
+router.delete('/remove/:id', removeUser);
 
 
 export default router;
