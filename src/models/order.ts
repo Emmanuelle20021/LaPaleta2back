@@ -21,7 +21,7 @@ class Order extends Model {
     autoIncrement: true,
     allowNull: false,
   })
-  declare id: Number;
+  declare idpedido: Number;
 
   @Column({
     type: DataType.BOOLEAN,

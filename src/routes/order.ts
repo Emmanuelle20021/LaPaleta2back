@@ -1,23 +1,16 @@
 import express from 'express';
-import { } from '../controller/order';
+import { addOrder, getOrder, getOrders, removeOrder, updateOrder } from '../controller/order';
 
 const router = express.Router();
 
-router.get('/:id', (_req , res)=> { 
-    res.send('get in order');
-});
+router.get('/', getOrders);
 
-router.post('/add',(_req , res)=>{
-    res.send('post in order');
-});
+router.get('/:id', getOrder);
 
-router.post('/update/:id',(_req , res)=>{
-    res.send('update in order');
-});
+router.post('/add', addOrder);
 
-router.delete('/remove/:id',(_req , res)=>{
-    res.send('remove in order');
-});
+router.post('/update/:id', updateOrder);
 
+router.delete('/remove/:id', removeOrder);
 
 export default router;

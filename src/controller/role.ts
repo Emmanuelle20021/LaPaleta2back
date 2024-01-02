@@ -21,10 +21,10 @@ export const addRole = async (req: Request, res: Response) => {
 
 export const removeRole = async (req: Request, res: Response) => {
     const role = await repository.update({ habilitado: false},{where: {idrol: req.params.id}});
-    return res.status(201).json({ id: role[0] , message: "Exitoso"});
+    return res.status(201).json({ afectados: role[0] , message: "Exitoso"});
 }
 
 export const updateRole = async (req: Request, res: Response) => {
     const role = await repository.update(req.body,{where: {idrol: req.params.id}});
-    return res.status(201).json({ id: role[0] , message: "Exitoso"});
+    return res.status(201).json({ afectados: role[0] , message: "Exitoso"});
 }

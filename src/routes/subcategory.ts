@@ -1,23 +1,17 @@
 import express from 'express';
-import { } from '../controller/subcategory';
+import { addSubcategory, getSubcategories, getSubcategory, removeSubcategory, updateSubcategory } from '../controller/subcategory';
 
 const router = express.Router();
 
-router.get('/:id', (_req , res)=> { 
-    res.send('get in subcategory');
-});
+router.get('/', getSubcategories);
 
-router.post('/add',(_req , res)=>{
-    res.send('post in subcategory');
-});
+router.get('/:id', getSubcategory);
 
-router.post('/update/:id',(_req , res)=>{
-    res.send('update in subcategory');
-});
+router.post('/add', addSubcategory);
 
-router.delete('/remove/:id',(_req , res)=>{
-    res.send('remove in subcategory');
-});
+router.post('/update/:id', updateSubcategory);
+
+router.delete('/remove/:id', removeSubcategory);
 
 
 export default router;
