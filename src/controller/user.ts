@@ -106,6 +106,12 @@ export const removeUser = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
+
+    if(req.body.contraseña) {
+        const hashPwd = await bcrypt.hash(req.body.contraseña, 10)
+        req.body.contraseña = hashPwd
+    }
+
     const user = await repository.update(req.body,{where: {idusuario: req.params.id}});
     return res.status(201).json({ afectados: user[0] , message: "Exitoso"});
 }

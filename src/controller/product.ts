@@ -10,7 +10,7 @@ export const getProducts = async (_req: Request, res: Response) => {
 }
 
 export const getProduct = async (req: Request, res: Response) => {
-    const product = await repository.findOne({where: {id_categoria: req.params.id}});
+    const product = await repository.findOne({where: {idproducto: req.params.id}});
     return res.status(201).json(product);
 }
 
