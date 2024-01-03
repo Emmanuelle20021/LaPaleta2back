@@ -40,10 +40,12 @@ export const register = async (req: Request, res: Response) => {
         const hashPwd = await bcrypt.hash(contraseña, 10)
         req.body.contraseña = hashPwd
 
-        await repository.create(req.body)
-        res.sendStatus(201)
-
+       const response = await repository.create(req.body)
+        res.status(201).json(response)
+        console.log('ok')
+         
     } catch (error) {
+
 
         if (error instanceof StatusError) {
             let message = '';
@@ -51,9 +53,9 @@ export const register = async (req: Request, res: Response) => {
             if (error.code === 400) message = 'Missing nombre, correo, contraseña or rol'
             if (error.code === 409) message = 'Email exists'
 
-            res.status(error.code).json({ error: message })
+             res.status(error.code).json({ error: message })
         } else {
-            res.sendStatus(500)
+             res.sendStatus(500)
         }
     }
 }
@@ -72,7 +74,7 @@ export const login = async (req: Request, res: Response) => {
         if (!match) throw new StatusError(401)
 
         const userForToken = {
-            id: user.id,
+            id: user.idusuario,
             id_rol: user.id_rol,
             correo: user.correo
         }
