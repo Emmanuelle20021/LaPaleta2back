@@ -30,12 +30,6 @@ class Cooler extends Model {
   })
   declare habilitado: Boolean;
 
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  declare id_cliente: Number;
-
   @ForeignKey(() => Product)
   @Column({
     type: DataType.INTEGER,
@@ -48,6 +42,12 @@ class Cooler extends Model {
     allowNull: false,
   })
   declare id_pedido: Number;
+
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  declare cantidad: Number;
 
   @UpdatedAt
   declare updatedAt?: Date;
