@@ -108,12 +108,40 @@ export const removeUser = async (req: Request, res: Response) => {
 }
 
 export const updateUser = async (req: Request, res: Response) => {
+    const { id } = req.body.decodedToken;
 
     if(req.body.contraseña) {
         const hashPwd = await bcrypt.hash(req.body.contraseña, 10)
         req.body.contraseña = hashPwd
     }
 
-    const user = await repository.update(req.body,{where: {idusuario: req.params.id}});
+    const user = await repository.update(req.body,{where: {idusuario: id}});
     return res.status(201).json({ afectados: user[0] , message: "Exitoso"});
+}
+
+export const verifyPassword = async (req: Request, res: Response) => {
+    try {
+        if(!req.body.contraseña) throw new StatusError(400) 
+        const { id } = req.body.decodedToken;
+        const user = await repository.findOne({where: {idusuario: id}});
+
+        if(!user) throw new StatusError(401)
+
+        const match = await bcrypt.compare(req.body.contraseña, String(user.contraseña))
+        if (!match) throw new StatusError(401)
+
+        return res.sendStatus(200);            
+    } catch (error) {
+        if (error instanceof StatusError) {
+            let message = '';
+
+            if (error.code === 400) message = 'Missing contraseña'
+            if (error.code === 401) message = 'Unauthorized'
+
+            res.status(error.code).json({ error: message })
+        } else {
+            console.log(error)
+            res.sendStatus(500)
+        }
+    }
 }

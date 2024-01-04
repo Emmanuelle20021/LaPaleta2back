@@ -1,5 +1,6 @@
 import express from 'express';
-import { register, login, getUsers, removeUser, updateUser } from '../controller/user';
+import { register, login, getUsers, removeUser, updateUser, verifyPassword } from '../controller/user';
+import { verifyJWT } from '../middleware/verifyJWT';
 
 const router = express.Router();
 
@@ -9,8 +10,9 @@ router.get('/:id', getUsers);
 
 router.post('/register', register)
 router.post('/login', login)
+router.post('/verifypwd', verifyJWT, verifyPassword)
 
-router.post('/update/:id', updateUser);
+router.post('/update', verifyJWT, updateUser);
 
 router.delete('/remove/:id', removeUser);
 
