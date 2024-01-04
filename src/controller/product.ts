@@ -33,10 +33,16 @@ export const getProduct = async (req: Request, res: Response) => {
 };
 
 export const addProduct = async (req: Request, res: Response) => {
-  const product = await repository.create(req.body).catch((error) => {
-    return res.status(500).json({ error: error.name });
-  });
-  return res.status(201).json(product);
+  try {
+    console.log(req.body);
+    return { true: "ok" };
+    const product = await repository.create(req.body).catch((error) => {
+      return res.status(500).json({ error: error.name });
+    });
+    return res.status(201).json(product);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const removeProduct = async (req: Request, res: Response) => {
