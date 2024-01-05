@@ -12,7 +12,7 @@ router.get('/freshBuy', verifyJWT ,freshBuys);
 
 router.get('/:id', getProduct);
 
-router.post('/add', verifyJWT ,addProduct);
+router.post('/add' ,addProduct);
 
 router.post('/update/:id', updateProduct);
 
