@@ -8,7 +8,7 @@ router.get('/', getOrders);
 
 router.get('/:id', getOrder);
 
-router.get('/user/:id', getOrdersUser);
+router.get('/user/:id', verifyJWT, getOrdersUser);
 
 router.post('/add', verifyJWT, addOrder);
 
