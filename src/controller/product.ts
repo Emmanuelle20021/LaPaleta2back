@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import sequelize from "../models/connection";
 import Product from "../models/product";
 import { QueryTypes } from "sequelize";
+import pt from "path";
+import StatusError from "../utils/StatusError";
 
 const repository = sequelize.getRepository(Product);
 
@@ -34,14 +36,23 @@ export const getProduct = async (req: Request, res: Response) => {
 
 export const addProduct = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
-    return { true: "ok" };
-    const product = await repository.create(req.body).catch((error) => {
-      return res.status(500).json({ error: error.name });
-    });
-    return res.status(201).json(product);
+    const image : any = req.files?.image
+    if (!image) throw new StatusError(400, 'Missing image');
+
+    //Save img
+    image.mv(pt.join(__dirname, "..", "..", "public", "assets", "img", image.name));
+
+    req.body.descripción = req.body.descripcion 
+    const product = await repository.create(req.body)
+
+    res.status(201).json(product);
   } catch (error) {
-    console.log(error);
+    if(error instanceof StatusError) {
+      res.status(error.code).json({error: error.message})
+    } else {
+      console.error(error)
+      res.sendStatus(500)
+    }
   }
 };
 
