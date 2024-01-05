@@ -10,15 +10,32 @@ export const getCoolers = async (_req: Request, res: Response) => {
 }
 
 export const getCooler = async (req: Request, res: Response) => {
-    const cooler = await repository.findOne({where: {idnevera: req.params.id}});
+    const cooler = await repository.findOne({ where: { idnevera: req.params.id } });
     return res.status(201).json(cooler);
 }
 
 export const addCooler = async (req: Request, res: Response) => {
-    const cooler = await repository.create(req.body).catch((error) => {
-        return res.status(500).json({error : error.name})
-    });
-    return res.status(201).json(cooler);
+
+    const { id_pedido, productos } = req.body
+    const details: Cooler[] = []
+
+    try {
+        for (let pdt of productos) {
+            const detail = await repository.create({
+                id_pedido, 
+                id_producto: pdt.id, 
+                cantidad: pdt.amount 
+            })
+    
+            details.push(detail)
+        }
+
+        res.status(201).json(details)
+
+    } catch (error: any) {
+        console.error(error)
+        res.status(500).json({ error: error.name })
+    }
 }
 
 export const removeCooler = async (req: Request, res: Response) => {

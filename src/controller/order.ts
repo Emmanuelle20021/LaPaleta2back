@@ -55,7 +55,15 @@ export const getOrder = async (req: Request, res: Response) => {
 };
 
 export const addOrder = async (req: Request, res: Response) => {
-  const order = await repository.create(req.body).catch((error) => {
+  const { id } = req.body.decodedToken;
+
+  const newOrder = {
+    id_cliente: id,
+    fecha: new Date(),
+    estado: "Proceso"
+  }
+
+  const order = await repository.create(newOrder).catch((error) => {
     return res.status(500).json({ error: error.name });
   });
   return res.status(201).json(order);

@@ -1,5 +1,6 @@
 import express from 'express';
 import { addOrder, getOrder, getOrders, getOrdersUser, removeOrder, updateOrder } from '../controller/order';
+import { verifyJWT } from '../middleware/verifyJWT';
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.get('/:id', getOrder);
 
 router.get('/user/:id', getOrdersUser);
 
-router.post('/add', addOrder);
+router.post('/add', verifyJWT, addOrder);
 
 router.post('/update/:id', updateOrder);
 
